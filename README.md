@@ -3,6 +3,7 @@ Repository for Team 1010K
 #pragma config(Sensor, in2,    Claw,           sensorPotentiometer)
 #pragma config(Sensor, dgtl2,  rightEncoder,   sensorQuadEncoder)
 #pragma config(Sensor, dgtl4,  liftEnocder,    sensorQuadEncoder)
+#pragma config(Sensor, dgtl6,  leftEncoder,    sensorQuadEncoder)
 #pragma config(Motor,  port1,           RA,            tmotorVex393TurboSpeed_HBridge, openLoop)
 #pragma config(Motor,  port2,           RB,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           RF,            tmotorVex393_MC29, openLoop)
@@ -72,31 +73,7 @@ void pre_auton()
 
 
 
-void turnleft(int power)
 
-{
-	motor [port3]=power;
-	motor [port2]=power;
-	motor [port8]=-power;
-	motor [port9]=-power;
-
-}
-
-
-void turnright(int power)
-{
-	motor[port3]=-power;
-	motor[port2]=-power;
-	motor[port8]=power;
-	motor[port9]=power;
-
-}
-//positive up, negative down. Need gravity
-void arm(int power)
-{
-	motor[RA]=motor[LA]=motor[RA1]=motor[LA1]=power;
-
-}
 
 
 void drive(int inches, int power)
@@ -118,73 +95,52 @@ void drive(int inches, int power)
 	motor[RF] = motor[RB] = motor[LF] = motor[LB]=0; // come to a stop
 }
 
-void clawOC(int power)
-{
-	SensorValue[in2]=0;
-
-	while
-		(SensorValue[Claw] < 2500)//  when the sensor has less than 2500
-		{
-		motor[port11]=power;// go
-		wait1Msec(1500);
-	}
-	while
-		(SensorValue[Claw] > 2500)// when encoder is equal to 2500
-		{motor[port11]=-power;
-	wait1Msec(1500);
-}
-if
-	(SensorValue[Claw]< 500)// when encoder is equal to 2500
-		{
-			motor[port11]=0;
-		 wait1Msec(2000);
-
-		}
-}
 
 
 
 
 
 task autonomous{
+		motor[port3] = 127;
+		motor[port2] = 127;
+		motor[port8] = 127;
+		motor[port9] = 127;
+		wait1Msec(4000);
+
+
+		motor[port2] = 127;
+		motor [port3] = 127;
+		motor[port8] = 0;
+		motor [port9] = 0;
+		wait1Msec(3000);
+		
+		motor[port5]=motor[port6]=motor[port1]=
+	}
+		
+		
+
+	/*
 	// go forward 48 inches
 	drive(48,127);
-	wait1Msec(1000);
+
 	// pick up mobile goal
 	motor[LL]=motor[RL]=127;
 	wait1Msec(1300); // pick up the mobile goal in highspeed, for 1.3 sec
 	motor[LL]=motor[RL]=-127;
 	wait1Msec(1300);// return to orginal place in highspeed
-	// turn left
-	turnleft(127);
-	clawOC(100); // pick up a cone with the arms
-	arm(127);//up
-	wait1Msec(3500);
-	arm(-120);// down
-	wait1Msec(2000);
-	arm(20);// gravity
-	// turn 180 deg
-	turnright(127);
-	turnright(127);
-	clawOC(100);// pick up cone
-	arm(127);//up
-	wait1Msec(500);
-	arm(-120);// down
-	wait1Msec(100);
-	arm(20);// gravity
-	drive(50,-127);// go backwards 50 inches
+	drive(52,-127);// go backwards 50 inches
 	wait1Msec(1000);//put the goal into 10 pt zone
 	motor[LL]=motor[RL]=127;
-	wait1Msec(1000);
+	wait1Msec(1300);
 	motor[LL]=motor[RL]=-127;
 	// go forward 50 inches
-	drive(50,-127);
-	wait1Msec(1000);
+	drive(52,127);
+
 	//EVERYTHING STOPS
 	motor[port1]=motor[port2]= motor[port3]=motor[port4]=motor[port5]=motor[port6]=motor[port7]=motor[port8]=motor[port9]=motor[port10]=0;
 }
 
-
+*/
 
 
 
@@ -209,10 +165,10 @@ task usercontrol()
 	while (1==1)
 		motor[LF]= motor[LB] = vexRT[Ch2]+ vexRT[Ch1]; // RF, RB speed is determined by Ch2
 	motor[RF]= motor[RB] = vexRT[Ch2]- vexRT[Ch1]; //LF,LB speed is determined by Ch2
-
+//6 control the lifts
 	if (vexRT[Btn6U]==1)
 	{
-	motor[LL]=motor[RL]=127; // LL,RL speed is determined by 6U going full speed
+	motor[LL]=motor[RL]=120; // LL,RL speed is determined by 6U going full speed
 	}
 	else if (vexRT[Btn6D]==1)
 	{
@@ -222,26 +178,26 @@ task usercontrol()
 	{
 	motor[LL]=motor[RL]=0; // if nothing then 0
 	}
-
+  // 8 control the arms
 	if (vexRT[Btn8U]==1)
 	{
-	motor[RA]=motor[LA]=127; // LA,RA speed is determined by 8U going full speed
+	motor[RA]=motor[LA]= motor[RA1]=motor[LA1]=120; // LA,RA speed is determined by 8U going full speed
 	}
 	else if (vexRT[Btn8D]==1)
 	{
-	motor[RA]=motor[LA]=-127;// LA,RA speed is determined by 6D going reverse full speed
+	motor[RA]=motor[LA]= motor[RA1]=motor[LA1]=-90;// LA,RA speed is determined by 6D going reverse full speed
 	}
-	else
+	if (vexRT[Btn8D]== 0 && vexRT[Btn8U]==0)
 	{
-	motor[RA]=motor[LA]=0;
+	motor[RA]=motor[LA]= motor[RA1]=motor[LA1]=20;// against gravity
 }
 
-
+  // 7 control claws
 	if (vexRT[Btn7U]==1)
 	{
 	if (SensorValue[in2]< 2500) // if the sensor is less than 2500, then go
 	{
-		motor[port11]=107; //The clasw speed is determined by 7U, going 107 as speed
+		motor[port11]=107; //The claw speed is determined by 7U, going 107 as speed
 	}
 	else
 	{
@@ -250,12 +206,13 @@ task usercontrol()
 }
   if (vexRT[Btn7D]==1)
 	{
-	if (SensorValue[in2]> 500) // if the sensor is larger than 500, the minimum value
+	if (SensorValue[in2]> 200) // if the sensor is larger than 500, the minimum value
 	{
 		motor[port11]=-107; //The clasw speed is determined by 7D, going -107 BACK
 	}
 }
-	else
+
+ if (vexRT[Btn7D]== 0 && vexRT[Btn7U]==0)
 	{
 	motor[port11]=0;
  }
