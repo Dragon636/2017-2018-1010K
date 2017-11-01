@@ -2,15 +2,15 @@
 Repository for Team 1010K
 #pragma config(Sensor, in2,    Claw,           sensorPotentiometer)
 #pragma config(Sensor, dgtl2,  rightEncoder,   sensorQuadEncoder)
-#pragma config(Sensor, dgtl4,  liftEnocder,    sensorQuadEncoder)
-#pragma config(Sensor, dgtl6,  leftEncoder,    sensorQuadEncoder)
+#pragma config(Sensor, dgtl4,  leftEncoder,    sensorQuadEncoder)
+#pragma config(Sensor, dgtl6,  liftEncoder,    sensorQuadEncoder)
 #pragma config(Motor,  port1,           RA,            tmotorVex393TurboSpeed_HBridge, openLoop)
 #pragma config(Motor,  port2,           RB,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           RF,            tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port4,           RL,            tmotorVex393HighSpeed_MC29, openLoop)
+#pragma config(Motor,  port4,           Lifts,         tmotorVex393HighSpeed_MC29, openLoop)
 #pragma config(Motor,  port5,           RA1,           tmotorVex393TurboSpeed_MC29, openLoop)
 #pragma config(Motor,  port6,           LA1,           tmotorVex393TurboSpeed_MC29, openLoop)
-#pragma config(Motor,  port7,           LL,            tmotorVex393HighSpeed_MC29, openLoop)
+#pragma config(Motor,  port7,           claw,          tmotorVex393HighSpeed_MC29, openLoop)
 #pragma config(Motor,  port8,           LF,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port9,           LB,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port10,          LA,            tmotorVex393TurboSpeed_HBridge, openLoop)
@@ -31,9 +31,6 @@ Repository for Team 1010K
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
 
-
-
-
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
 /*                                                                           */
@@ -46,18 +43,18 @@ Repository for Team 1010K
 
 void pre_auton()
 {
-	// Set bStopTasksBetweenModes to false if you want to keep user created tasks
-	// running between Autonomous and Driver controlled modes. You will need to
-	// manage all user created tasks if set to false.
-	bStopTasksBetweenModes = true;
+  // Set bStopTasksBetweenModes to false if you want to keep user created tasks
+  // running between Autonomous and Driver controlled modes. You will need to
+  // manage all user created tasks if set to false.
+  bStopTasksBetweenModes = true;
 
 	// Set bDisplayCompetitionStatusOnLcd to false if you don't want the LCD
 	// used by the competition include file, for example, you might want
 	// to display your team name on the LCD in this function.
 	// bDisplayCompetitionStatusOnLcd = false;
 
-	// All activities that occur before the competition starts
-	// Example: clearing encoders, setting servo positions, ...
+  // All activities that occur before the competition starts
+  // Example: clearing encoders, setting servo positions, ...
 }
 
 /*---------------------------------------------------------------------------*/
@@ -69,13 +66,6 @@ void pre_auton()
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
-
-
-
-
-
-
-
 void drive(int inches, int power)
 {
 	SensorValue[rightEncoder] = 0; // reset encoders
@@ -95,12 +85,9 @@ void drive(int inches, int power)
 	motor[RF] = motor[RB] = motor[LF] = motor[LB]=0; // come to a stop
 }
 
-
-
-
-
-
-task autonomous{
+task autonomous()
+{
+	//These are for testsing
 		motor[port3] = 127;
 		motor[port2] = 127;
 		motor[port8] = 127;
@@ -113,39 +100,33 @@ task autonomous{
 		motor[port8] = 0;
 		motor [port9] = 0;
 		wait1Msec(3000);
-		
-		motor[port5]=motor[port6]=motor[port1]=
-	}
-		
-		
 
-	/*
-	// go forward 48 inches
+		motor[port2]=motor[port3]=motor[port8]= motor[port9]=0;
+  
+		/*These are for offical competition, use it after testing
+		// go forward 48 inches
 	drive(48,127);
 
 	// pick up mobile goal
 	motor[LL]=motor[RL]=127;
 	wait1Msec(1300); // pick up the mobile goal in highspeed, for 1.3 sec
-	motor[LL]=motor[RL]=-127;
+	motor[Lifts]=-127;
 	wait1Msec(1300);// return to orginal place in highspeed
 	drive(52,-127);// go backwards 50 inches
 	wait1Msec(1000);//put the goal into 10 pt zone
-	motor[LL]=motor[RL]=127;
+	motor[Lifts]=127;
 	wait1Msec(1300);
-	motor[LL]=motor[RL]=-127;
-	// go forward 50 inches
+	motor[Lifts]=-127;
+	// go forward 52 inches
 	drive(52,127);
 
 	//EVERYTHING STOPS
 	motor[port1]=motor[port2]= motor[port3]=motor[port4]=motor[port5]=motor[port6]=motor[port7]=motor[port8]=motor[port9]=motor[port10]=0;
 }
-
 */
 
-
-
-/*go forward, grab a stantionary goal, put on a cone, return to 10pt line, park
-
+  AutonomousCodePlaceholderForTesting();
+}
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
@@ -157,28 +138,30 @@ task autonomous{
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-
 task usercontrol()
 {
-	// User control code here, inside the loop
-	// Channel 2 determind forwardm channel 1 determine turns
-	while (1==1)
-		motor[LF]= motor[LB] = vexRT[Ch2]+ vexRT[Ch1]; // RF, RB speed is determined by Ch2
+  // User control code here, inside the loop
+
+  while (true)
+  {
+  motor[LF]= motor[LB] = vexRT[Ch2]+ vexRT[Ch1]; // RF, RB speed is determined by Ch2
 	motor[RF]= motor[RB] = vexRT[Ch2]- vexRT[Ch1]; //LF,LB speed is determined by Ch2
-//6 control the lifts
+	
+	//------------------------------------------------------------------------------------------- 6 control the lifts
+	
 	if (vexRT[Btn6U]==1)
 	{
-	motor[LL]=motor[RL]=120; // LL,RL speed is determined by 6U going full speed
+	motor[Lifts]=120; // Lifts speed is determined by 6U going full speed
 	}
 	else if (vexRT[Btn6D]==1)
 	{
-	motor[LL]=motor[RL]=-127;// LL,RL speed is determined by 6D going reverse full speed,
+	motor[Lifts]=-127;// LL,RL speed is determined by 6D going reverse full speed,
 	}
 	else
 	{
-	motor[LL]=motor[RL]=0; // if nothing then 0
+	motor[Lifts]=0; // if nothing then 0
 	}
-  // 8 control the arms
+  //------------------------------------------------------------- 8 control the arms
 	if (vexRT[Btn8U]==1)
 	{
 	motor[RA]=motor[LA]= motor[RA1]=motor[LA1]=120; // LA,RA speed is determined by 8U going full speed
@@ -192,28 +175,30 @@ task usercontrol()
 	motor[RA]=motor[LA]= motor[RA1]=motor[LA1]=20;// against gravity
 }
 
-  // 7 control claws
+  //--------------------------------------------------------------------------------------- 7 control claws
 	if (vexRT[Btn7U]==1)
 	{
 	if (SensorValue[in2]< 2500) // if the sensor is less than 2500, then go
 	{
-		motor[port11]=107; //The claw speed is determined by 7U, going 107 as speed
+		motor[claw]=107; //The claw speed is determined by 7U, going 107 as speed
 	}
 	else
 	{
-	motor[port11]=0;
+	motor[claw]=0;
  }
 }
   if (vexRT[Btn7D]==1)
 	{
 	if (SensorValue[in2]> 200) // if the sensor is larger than 500, the minimum value
 	{
-		motor[port11]=-107; //The clasw speed is determined by 7D, going -107 BACK
+		motor[claw]=-107; //The clasw speed is determined by 7D, going -107 BACK
 	}
 }
 
  if (vexRT[Btn7D]== 0 && vexRT[Btn7U]==0)
 	{
-	motor[port11]=0;
+	motor[claw]=0;
  }
+    UserControlCodePlaceholderForTesting();
+  }
 }
