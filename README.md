@@ -88,6 +88,9 @@ void drive(int inches, int power)
 task autonomous()
 {
 	//These are for testsing
+// go stright for 4 seconds
+//turn left for 1.3 seconds
+//Arm up for 1.3 sec, arm down for 1 sec, during the time lift comes out and goes back. everything stops
 		motor[port3] = 127;
 		motor[port2] = 127;
 		motor[port8] = 127;
@@ -99,26 +102,49 @@ task autonomous()
 		motor [port3] = 127;
 		motor[port8] = 0;
 		motor [port9] = 0;
-		wait1Msec(3000);
+		wait1Msec(1300);
+		
+		motor[RA]=motor[RA1]=motor[LA]=motor[LA1]=120;
+	wait1Msec(1300);
+	motor[RA]=motor[RA1]=motor[LA]=motor[LA1]=-120;
+	motor[Lifts]=100;
+	wait1Msec(1000);
+		motor[Lifts]=-100;
+	wait1Msec(1000);
+	
 
-		motor[port2]=motor[port3]=motor[port8]= motor[port9]=0;
+
+		motor[port2]=motor[port3]=motor[port8]= motor[port9]=	motor[RA]=motor[RA1]=motor[LA]=motor[LA1]=0;
   
 		/*These are for offical competition, use it after testing
 		// go forward 48 inches
 	drive(48,127);
 
 	// pick up mobile goal
-	motor[LL]=motor[RL]=127;
+	motor[Lifts]=127;
 	wait1Msec(1300); // pick up the mobile goal in highspeed, for 1.3 sec
 	motor[Lifts]=-127;
+	
 	wait1Msec(1300);// return to orginal place in highspeed
-	drive(52,-127);// go backwards 50 inches
-	wait1Msec(1000);//put the goal into 10 pt zone
+	
+	drive(50,-127);// go backwards 50 inches
+	------//put the goal into 10 pt zone
+		motor[RF] = 127;
+		motor [RB] = 127;
+		motor[LB] = 0;
+		motor [LF] = 0;
+		wait1Msec(2000);// turn left for 2 sec
 	motor[Lifts]=127;
 	wait1Msec(1300);
 	motor[Lifts]=-127;
-	// go forward 52 inches
-	drive(52,127);
+	
+	motor[LF] = 127;
+		motor [LB] = 127;
+		motor[RB] = 0;
+		motor [RF] = 0;
+		wait1Msec(2000);// turn left for 2 sec// at this time, robot should be in a stright motion
+	// go forward 51 inches
+	drive(51,127);
 
 	//EVERYTHING STOPS
 	motor[port1]=motor[port2]= motor[port3]=motor[port4]=motor[port5]=motor[port6]=motor[port7]=motor[port8]=motor[port9]=motor[port10]=0;
