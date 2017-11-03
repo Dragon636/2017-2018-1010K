@@ -221,20 +221,19 @@ task usercontrol()
 	if (vexRT[Btn8U]==1)
 		{
 		motor[RA]=motor[LA1]=120;// Two sides of RA and the upper left arm are going in one direction
-		motor[BLA]=-120; // Bottom arm is going the other way
+		motor[BLA]=120; // Bottom arm is going the other way //I CAME AND SAW THE ARM IS GOING TO GO THE SAME WAY?? SO I CHANGED IT.. CHANGE IT TO 120 IF U NEED
 		}
 
 		else if (vexRT[Btn8D]==1)// When 8d is pressed
 		{
 		 	motor[RA]=motor[LA1]=-120;//Two sides of RA and the upper left arm are going in one direction
-		motor[BLA]=120;
+		motor[BLA]=-120;// I CAME AND SAW THE ARM IS GOING TO GO THE SAME WAY?? SO I CHANGED IT.. CHANGE IT TO 120 IF U NEED
 	}
 
 	if (vexRT[Btn8D]== 0 && vexRT[Btn8U]==0)// if don't press anything
 	{
-	motor[BLA]-=20;// against gravity
-	motor[RA]=motor[LA1]=20
-}
+	motor[BLA]= 20;// against gravity //I CAME AND SAW THE ARM IS GOING TO GO THE SAME WAY?? SO I CHANGED IT.. CHANGE IT TO 120 IF U NEED
+	motor[RA]=motor[LA1]=20;
 
   //--------------------------------------------------------------------------------------- 7 control claws
 	if (vexRT[Btn7U]==1)
