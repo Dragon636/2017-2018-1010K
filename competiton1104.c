@@ -6,9 +6,9 @@
 #pragma config(Motor,  port2,           RB,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           RF,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           Lifts,         tmotorVex393HighSpeed_MC29, openLoop)
-#pragma config(Motor,  port5,           RA1,           tmotorVex393TurboSpeed_MC29, openLoop, reversed)
-#pragma config(Motor,  port6,           LA1,           tmotorVex393TurboSpeed_MC29, openLoop, reversed)
-#pragma config(Motor,  port7,           BArms,         tmotorNone, openLoop)
+#pragma config(Motor,  port5,           BLA,           tmotorVex393TurboSpeed_MC29, openLoop)
+#pragma config(Motor,  port6,           LA1,           tmotorVex393TurboSpeed_MC29, openLoop)
+#pragma config(Motor,  port7,           RA,            tmotorVex393TurboSpeed_MC29, openLoop)
 #pragma config(Motor,  port8,           LF,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port9,           LB,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port10,           ,             tmotorVex393TurboSpeed_HBridge, openLoop)
@@ -152,7 +152,7 @@ task autonomous()
 }
 */
 
-  AutonomousCodePlaceholderForTesting();
+  //AutonomousCodePlaceholderForTesting();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -168,11 +168,11 @@ task autonomous()
 task usercontrol()
 {
   // User control code here, inside the loop
-
+// Chanel 4 = updown &Channel 2= leftright
   while (true)
   {
-  motor[LF]= motor[LB] = vexRT[Ch2]+ vexRT[Ch1]; // RF, RB speed is determined by Ch2
-	motor[RF]= motor[RB] = vexRT[Ch2]- vexRT[Ch1]; //LF,LB speed is determined by Ch2
+  motor[LF]= motor[LB] = vexRT[Ch2]+ vexRT[Ch4] ; //
+	motor[RF]= motor[RB] = vexRT[Ch4]-vexRT[Ch2]; //
 
 	//------------------------------------------------------------------------------------------- 6 control the lifts
 
@@ -190,22 +190,24 @@ task usercontrol()
 	}
   //------------------------------------------------------------- 8 control the arms
 	if (vexRT[Btn8U]==1)
-	{
-	motor[BArms]= motor[RA1]=motor[LA1]=120; // LA,RA speed is determined by 8U going full speed
-	}
-	else if (vexRT[Btn8D]==1)
-	{
-	motor[BArms]= motor[RA1]=motor[LA1]=-90;// LA,RA speed is determined by 6D going reverse full speed
+		{
+		motor[RA]=motor[LA1]=120;
+		motor[BLA]=-120; // LA,RA speed is determined by 8U going full speed
+		}
+		else if (vexRT[Btn8D]==1)
+		{
+		 	motor[RA]=motor[LA1]=-120;
+		motor[BLA]=120;
 	}
 	if (vexRT[Btn8D]== 0 && vexRT[Btn8U]==0)
 	{
-	motor[BArms]= motor[RA1]=motor[LA1]=20;// against gravity
+	motor[BLA]= motor[RA]=motor[LA1]=20;// against gravity
 }
 
   //--------------------------------------------------------------------------------------- 7 control claws
 	if (vexRT[Btn7U]==1)
 	{
-	if (SensorValue[in2]< 2500) // if the sensor is less than 2500, then go
+	if (SensorValue[in2]< 2000) // if the sensor is less than 2500, then go
 	{
 		motor[claw]=107; //The claw speed is determined by 7U, going 107 as speed
 	}
@@ -216,7 +218,7 @@ task usercontrol()
 }
   if (vexRT[Btn7D]==1)
 	{
-	if (SensorValue[in2]> 200) // if the sensor is larger than 500, the minimum value
+	if (SensorValue[in2]> 600) // if the sensor is larger than 500, the minimum value
 	{
 		motor[claw]=-107; //The clasw speed is determined by 7D, going -107 BACK
 	}
@@ -226,6 +228,6 @@ task usercontrol()
 	{
 	motor[claw]=0;
  }
-    UserControlCodePlaceholderForTesting();
+    //UserControlCodePlaceholderForTesting();
   }
 }
