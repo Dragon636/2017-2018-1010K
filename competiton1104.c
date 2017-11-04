@@ -66,7 +66,11 @@ void pre_auton()
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
+<<<<<<< HEAD
 void drive(int inches, int power)
+=======
+void drive(int inches,int power)
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 {
 	SensorValue[rightEncoder] = 0; // reset encoders
 
@@ -74,7 +78,7 @@ void drive(int inches, int power)
 
 	while( abs(SensorValue(rightEncoder)) < ticks*0.7)//  when 70% of the ticks
 	{
-		motor[RF]=motor[RB]=motor[LF]=motor[LB]=power;
+		motor[RF]=motor[RB]=motor[LF]=motor[LB]= power;
 	}
 	while( abs(SensorValue(rightEncoder)) < ticks)// when encoder is less thanb the ticks
 	{
@@ -85,6 +89,7 @@ void drive(int inches, int power)
 	motor[RF] = motor[RB] = motor[LF] = motor[LB]=0; // come to a stop
 }
 
+<<<<<<< HEAD
 void wiggle(int power)
 
 {
@@ -106,18 +111,48 @@ else
 {
 	motor[RF]= motor[RB]=power-10;
 	motor[LF]= motor[LB]=power;
+=======
+
+void wiggle(int power)//make sure both sides are at equal speed
+{
+while(1==1)
+{
+	if (SensorValue[rightEncoder]== SensorValue[leftEncoder])
+	{
+	motor[RF]=motor[RB]=motor[LF]=motor[LB]= power;
+}
+	else if (SensorValue[rightEncoder]> SensorValue[leftEncoder])
+	{
+	motor[RF]=motor[RB]=power-10;
+	motor[LF]=motor[LB]=power;
+}
+else
+{
+motor[RF]=motor[RB]=power;
+motor[LF]=motor[LB]=power-10;
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 }
 }
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 task autonomous()
 {
-	//These are for testsing
+	//TEST CODE
 // go stright for 4 seconds
 //turn left for 1.3 seconds
 //Arm up for 1.3 sec, arm down for 1 sec, during the time lift comes out and goes back. everything stops
+<<<<<<< HEAD
 	/*
 	motor[port3] = 127;
+=======
+/*
+		motor[port3] = 127;
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 		motor[port2] = 127;
 		motor[port8] = 127;
 		motor[port9] = 127;
@@ -138,7 +173,11 @@ task autonomous()
 	wait1Msec(1000);
 		motor[Lifts]=-100;
 	wait1Msec(1000);
+motor[port2]=motor[port3]=motor[port8]= motor[port9]=	motor[RA]=motor[RA1]=motor[LA]=motor[LA1]=0;
+*/
+//-------------------------------------------------------------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 
 
 		motor[port2]=motor[port3]=motor[port8]= motor[port9]=	motor[RA]=motor[RA1]=motor[LA]=motor[LA1]=0;
@@ -147,6 +186,11 @@ task autonomous()
 		// go forward 48 inches
  wiggle(100);
  wait1Msec(2000);
+=======
+		// go forward 48 inches
+	wiggle(100);
+	wait1Msec(2000);
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 	drive(47,127);
 
 	// pick up mobile goal
@@ -154,6 +198,7 @@ task autonomous()
 	wait1Msec(1300); // pick up the mobile goal in highspeed, for 1.3 sec
 	motor[Lifts]=-127;
 	wait1Msec(1300);// return to orginal place in highspeed
+<<<<<<< HEAD
   wiggle(100);
   wait1Msec(2000);
 	drive(48,127);// go backwards 50 inches
@@ -162,18 +207,38 @@ task autonomous()
 		motor[LB] = 0;
 		motor [LF] = 0;
 		wait1Msec(3000);// turn left for 3 sec
+=======
+
+	drive(50,-127);// go backwards 50 inches
+	//--------------------------------put the goal into 10 pt zone
+
+ 		motor[RF] = 127;
+		motor [RB] = 127;
+		motor[LB] = -127;
+		motor [LF] = -127;
+		wait1Msec(2000);// turn left for 2 sec
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 	motor[Lifts]=127;
 	wait1Msec(3000);
 	motor[Lifts]=-127;
 
 	motor[LF] = 127;
 		motor [LB] = 127;
+<<<<<<< HEAD
 		motor[RB] = 0;
 		motor [RF] = 0;
 		wait1Msec(3000);// turn left for 2 sec// at this time, robot should be in a stright motion
 	// go forward 51 inches
 	wiggle(100);
  wait1Msec(2000);
+=======
+		motor[RB] = 127;
+		motor [RF] = 127;
+		wait1Msec(2000);// turn left for 2 sec// at this time, robot should be in a stright motion
+	// go forward 51 inches
+	wiggle(100);
+	wait1Msec(2000);
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 	drive(51,127);
 
 	//EVERYTHING STOPS
@@ -201,8 +266,13 @@ task usercontrol()
   while (true)
 
   {
+<<<<<<< HEAD
   motor[LF]= motor[LB] = vexRT[Ch3]+ vexRT[Ch1];//
 	motor[RF]= motor[RB] = vexRT[Ch1]- vexRT[Ch3]; //
+=======
+  motor[LF]= motor[LB] = vexRT[Ch2]+ vexRT[Ch4] ; //
+	motor[RF]= motor[RB] = vexRT[Ch4]- vexRT[Ch2]; //
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 
 	//------------------------------------------------------------------------------------------- 6 control the lifts
 
@@ -220,7 +290,9 @@ task usercontrol()
 	{
 	motor[Lifts]=0; // if nothing then 0
 	}
+
   //------------------------------------------------------------- 8 control the arms
+<<<<<<< HEAD
 	if (vexRT[Btn8UXmtr2]==1)
 		{
 		motor[RA]=-120;
@@ -249,13 +321,61 @@ task usercontrol()
 	{
 
 		motor[claw]=-107; //The clasw speed is determined by 7D, going -107 BACK
+=======
+
+	if (vexRT[Btn8U]==1)
+		{
+		motor[RA]=motor[LA1]=120;// Two sides of RA and the upper left arm are going in one direction
+		motor[BLA]=120; // Bottom arm is going the other way //I CAME AND SAW THE ARM IS GOING TO GO THE SAME WAY?? SO I CHANGED IT.. CHANGE IT TO 120 IF U NEED
+		}
+
+		else if (vexRT[Btn8D]==1)// When 8d is pressed
+		{
+		 	motor[RA]=motor[LA1]=-120;//Two sides of RA and the upper left arm are going in one direction
+		motor[BLA]=-120;// I CAME AND SAW THE ARM IS GOING TO GO THE SAME WAY?? SO I CHANGED IT.. CHANGE IT TO 120 IF U NEED
+	}
+
+	if (vexRT[Btn8D]== 0 && vexRT[Btn8U]==0)// if don't press anything
+	{
+	motor[BLA]= 20;// against gravity //I CAME AND SAW THE ARM IS GOING TO GO THE SAME WAY?? SO I CHANGED IT.. CHANGE IT TO 120 IF U NEED
+	motor[RA]=motor[LA1]=20;
+
+  //--------------------------------------------------------------------------------------- 7 control claws
+	if (vexRT[Btn7U]==1)
+	{
+		SensorValue[in2] = 0; // reset sensor
+
+	if (SensorValue[in2]< 2400) // if the sensor is less than 2400, then go
+	{
+		motor[claw]=107; //The claw speed is determined by 7U, going 107 as speed
+	}
+	else
+	{
+	motor[claw]=0;
+ }
+}
+  if (vexRT[Btn7D]==1)
+	{
+	SensorValue[in2] = 0;
+
+	if (SensorValue[in2]> 550) // if the sensor is larger than 500, the minimum value
+	{
+		motor[claw]=-107; //The claw speed is determined by 7D, going -107 BACK
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
 	}
 
 
  if (vexRT[Btn7DXmtr2]== 0 && vexRT[Btn7UXmtr2]==0)
 	{
 	motor[claw]=0;
+<<<<<<< HEAD
  }
     //UserControlCodePlaceholderForTesting();
   }
   }
+=======
+	}
+
+}
+}
+>>>>>>> c474758992c834131e059e714fce1696357ab12c
