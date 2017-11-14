@@ -29,8 +29,72 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
-void operatorControl() {
-	while (1) {
-		delay(20);
+int joystickGetAnalog( unsigned char joystick, //1 for master, 2 for partner
+							unsigned char axis //1,2,3,4,on the joystick
+						);
+
+void motorset( unsigned char channel,
+							int speed
+						);
+
+void operatorcontrol(){
+		int power, turn;
+		while(1){
+			power= joystickGetAnalog (1,3);// vertical axis on right jotstick
+			turn=  joystickGetAnalog (1,2);// horizontal axis on right joystc for turn
+		motorSet(6, power + turn); // port 6 & 7 are left
+		motorSet(7, power + turn);
+		motorSet(3, power - turn); // port 2 & 3 are right
+		motorSet(2, power - turn);
+
+
+	if (joystickGetDigital(1, 6, JOY_UP)){
+		motorSet(4, 127);// when 6U is ppressed, lift up
 	}
-}
+	else if (joystickGetDigital(1, 6, JOY_DOWN)){
+		motorSet(4, -127);// when 6D is pressed, lift down
+	}
+else
+	{
+	motorSet(4, 0); // when nothing is pressed, lift still
+	}
+
+	if (joystickGetDigital(2, 8, JOY_UP)){
+		motorSet(5, -120);  // bottom right arm is -120
+		motorSet(9, -120);  // upper right arm is -120
+		motorSet(10, 120); // bottom left arm is 120
+		motorSet(8, 120);  // upper left arm is 120
+	}
+
+	else if (joystickGetDigital(2,8, JOY_DOWN)){
+		motorSet(5, 120);  // bottom right arm is 120
+		motorSet(9, 120);  // upper right arm is 120
+		motorSet(10,-120); // bottom left arm is -120
+		motorSet(8, -120);  // upper left arm is -120
+	}
+
+else
+	{
+		motorSet(5, -20);  // bottom right arm is 120
+		motorSet(9, -20);  // upper right arm is 120
+		motorSet(10,20); // bottom left arm is -120
+	}
+
+	
+
+
+	if (joystickGetDigital(2, 7, JOY_UP)){
+
+		motorSet(1,120); // if on the partner controller, 7 up is press claw open
+	}
+	else if (joystickGetDigital(2,7,JOY_DOWN)){
+		motorSet(1,-120); //. if on the partner controller, 7 down is pressed, claw close
+	}
+
+else
+	{
+	motorSet(1,0);
+	}
+
+	delay(20);
+	}
