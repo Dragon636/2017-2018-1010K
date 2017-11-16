@@ -27,13 +27,14 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
-delay(2000); // pause for 2 sec before the program runs
+//delay(2000); // pause for 2 sec before the program runs
   // raise arm for .5 sec
-  motorSet(5,-120);
+/*  motorSet(5,-120);
   motorSet(9,-120);
   motorSet(10,120);
   motorSet(8,120);
   delay(500);
+  */
 // continue with 20 for gravity for 9 sec
   motorSet(5,-20);
   motorSet(9,-20);
