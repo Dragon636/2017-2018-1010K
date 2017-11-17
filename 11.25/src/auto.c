@@ -27,6 +27,7 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
+  /*
   // raise arm for .5 sec
   motorSet(5,-120);
   motorSet(9,-120);
@@ -101,7 +102,7 @@ motorSet(7,120);
 motorSet(2,120);
 motorSet(3,120);
 delay(500);
-
+*/
 //----------------------------------------
 // each piece of mat is 24 inches.
 // aproxiamte 2.7 mat to get to the parking/mobile goal
