@@ -36,7 +36,7 @@ void operatorControl() {
 	while (1) {
 
 		power= joystickGetAnalog (1,3);// vertical axis on right jotstick
-		turn=  joystickGetAnalog (1,4);// horizontal axis on right joystc for turn
+		turn=  joystickGetAnalog (1,1);// horizontal axis on right joystc for turn
 
 	motorSet(6, power + turn); // port 6 & 7 are left
 	motorSet(7, power + turn);
@@ -60,15 +60,15 @@ void operatorControl() {
 	 	if (joystickGetDigital(2, 8, JOY_UP)){
 	 		motorSet(5, -120);  // bottom right arm is -120
 	 		motorSet(9, -120);  // upper right arm is -120
-	 		motorSet(10, 120); // bottom left arm is 120
+	 		motorSet(10, -120); // bottom left arm is 120
 	 		motorSet(8, 120);  // upper left arm is 120
 	 	}
 
 	 	else if (joystickGetDigital(2,8, JOY_DOWN)){
-	 		motorSet(5, -120);  // bottom right arm is 120
-	 		motorSet(9, -120);  // upper right arm is 120
+	 		motorSet(5, 120);  // bottom right arm is 120
+	 		motorSet(9, 120);  // upper right arm is 120
 	 		motorSet(10,120); // bottom left arm is -120
-	 		motorSet(8, 120);  // upper left arm is -120
+	 		motorSet(8, -120);  // upper left arm is -120
 	 	}
 
      else
