@@ -27,26 +27,126 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
-  /*
-  // raise arm for .5 sec
+
+
+  // arm up
   motorSet(5,-120);
   motorSet(9,-120);
-  motorSet(10,120);
+  motorSet(10,-120);
   motorSet(8,120);
-  delay(300);
-// continue with 20 for gravity for 9 sec
-  motorSet(5,-10);
-  motorSet(9,-10);
-  motorSet(10,10);
-  motorSet(8,10);
-  delay(9000);
+  delay(600);
 
-  // drive to first cone for 3.5 sec with full power
+// continue with 20 for gravity for 0.2 sec
+  motorSet(5,20);
+  motorSet(9,20);
+  motorSet(10,20);
+  motorSet(8,-20);
+  delay(200);
+
+
+    //lift out for 0.2 sec
+    motorSet(4,87);
+    delay(200);
+
+
+  // drive to first cone for 3 sec with full power
   motorSet(6,127);
   motorSet(7,127);
-  motorSet(2,127);
-  motorSet(3,127);
-  delay(3500);
+  motorSet(2,-127);
+  motorSet(3,-127);
+  delay(2480);
+
+// stop for 2 sec
+  motorSet(6,0);
+  motorSet(7,0);
+  motorSet(2,0);
+  motorSet(3,0);
+  delay(2000);
+
+   // lift back
+   motorSet(4,-127);
+   delay(600);
+
+
+// going back
+   motorSet(6,-127);
+   motorSet(7,-127);
+   motorSet(2,127);
+   motorSet(3,127);
+   delay(1400);
+
+// turn
+   motorSet(6,-127);
+   motorSet(7,-127);
+   motorSet(2,-127);
+   motorSet(3,-127);
+    delay(1300);
+
+// go forward a bit
+    motorSet(6,127);
+    motorSet(7,127);
+    motorSet(2,-127);
+    motorSet(3,-127);
+    delay(1500);
+
+// drive motors stop
+    motorSet(6,0);
+    motorSet(7,0);
+    motorSet(2,0);
+    motorSet(3,0);
+    delay(2000);
+
+// lift motor out for 4 sec
+    motorSet(4,127);
+    delay(4000);
+
+// go back ward for 1.5 sec
+    motorSet(6,-127);
+    motorSet(7,-127);
+    motorSet(2,127);
+    motorSet(3,127);
+    delay(1500);
+
+
+/*
+   motorSet(5, 120);  // bottom right arm is 120
+   motorSet(9, 120);  // upper right arm is 120
+   motorSet(10,120); // bottom left arm is -120
+   motorSet(8, -120);  // upper left arm is -120
+   delay(1000);
+
+   // open claw
+   motorSet(1,120);
+   delay(1000);
+
+   motorSet(5,-110);
+   motorSet(9,-110);
+   motorSet(10,-110);
+   motorSet(8,110);
+   delay(300);
+
+ // continue with 20 for gravity for 9 sec
+   motorSet(5,-10);
+   motorSet(9,-10);
+   motorSet(10,10);
+   motorSet(8,10);
+   delay(3000);
+
+
+
+   // drive
+   motorSet(6,127);
+   motorSet(7,127);
+   motorSet(2,-127);
+   motorSet(3,-127);
+   delay(3000);
+
+
+   // mobile goal down
+   motorSet(4,-127);
+   delay(1000);
+
+
 // drive to first cone for 1.5 sec with half power
   motorSet(6,60);
   motorSet(7,60);
@@ -73,9 +173,6 @@ void autonomous() {
   motorSet(8,120);
   delay(2000);
 
-  // open claw
-  motorSet(1,120);
-  delay(1000);
 
   //raise arm for 8 sec
   motorSet(5,-20);
@@ -102,16 +199,14 @@ motorSet(7,120);
 motorSet(2,120);
 motorSet(3,120);
 delay(500);
-*/
+
 //----------------------------------------
 // each piece of mat is 24 inches.
 // aproxiamte 2.7 mat to get to the parking/mobile goal
 // going at full speed, 1000 per 20 inches
-motorSet(6,127);
-motorSet(7,127);
-motorSet(2,127);
-motorSet(3,127);
-delay(3240);
+
+
+
 
 
 // at speed 80, 15 degrees 100ms
@@ -120,7 +215,7 @@ delay(3240);
 
 
 
-
+*/
 
   //
 }

@@ -46,11 +46,11 @@ void operatorControl() {
 
 
 		if (joystickGetDigital(1, 6, JOY_UP)){
-	 		motorSet(4, 127);// when 6U is ppressed, lift up
+	 		motorSet(4, -127);// when 6U is ppressed, lift up
 	 	}
 
 	 	else if (joystickGetDigital(1, 6, JOY_DOWN)){
-	 		motorSet(4, -127);// when 6D is pressed, lift down
+	 		motorSet(4, 127);// when 6D is pressed, lift down
 	 	}
 	 else
 	 	{
