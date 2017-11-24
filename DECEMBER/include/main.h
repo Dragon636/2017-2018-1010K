@@ -25,13 +25,6 @@
 // This prevents multiple inclusion, which isn't bad for this file but is good practice
 #define MAIN_H_
 
-#define QUAD_ARM_PORT1
-#define QUAD_LIFT_PORT1
-#define QUAD_ARM_PORT2
-
-
-
-//Encoder encoder;
 #include <API.h>
 
 // Allow usage of this file in C++ programs

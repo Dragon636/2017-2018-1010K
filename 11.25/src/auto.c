@@ -11,6 +11,7 @@
  */
 
 #include "main.h"
+// THIS SET OF CODE USES NORMAL SPEED MOTORS
 
 /*
  * Runs the user autonomous code. This function will be started in its own task with the default
@@ -27,26 +28,28 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
-
+// need to further change test all the arm fuctions
 
   // arm up
   motorSet(5,-120);
   motorSet(9,-120);
   motorSet(10,-120);
   motorSet(8,120);
-  delay(600);
+  delay(1100);
 
 // continue with 20 for gravity for 0.2 sec
   motorSet(5,20);
   motorSet(9,20);
   motorSet(10,20);
   motorSet(8,-20);
-  delay(200);
+  delay(300);
 
-
-    //lift out for 0.2 sec
-    motorSet(4,87);
-    delay(200);
+/*
+// lift down
+  motorSet(4,127);
+  delay(400);
+  // stop
+  motorSet(4,0);
 
 
   // drive to first cone for 3 sec with full power
@@ -54,7 +57,7 @@ void autonomous() {
   motorSet(7,127);
   motorSet(2,-127);
   motorSet(3,-127);
-  delay(2480);
+  delay(2650);
 
 // stop for 2 sec
   motorSet(6,0);
@@ -67,7 +70,30 @@ void autonomous() {
    motorSet(4,-127);
    delay(600);
 
+   // stop lift
+   motorSet(4,0);
 
+   */
+
+   // *arm down
+   motorSet(5,120);
+  motorSet(9,120);
+  motorSet(10,120);
+  motorSet(8,-120);
+  delay(500);
+
+  // *claw open
+  motorSet(1,120);
+  delay(500);
+
+  // *arm up
+  motorSet(5,-120);
+  motorSet(9,-120);
+  motorSet(10,-120);
+  motorSet(8,120);
+  delay(1000);
+
+/*
 // going back
    motorSet(6,-127);
    motorSet(7,-127);
@@ -75,7 +101,7 @@ void autonomous() {
    motorSet(3,127);
    delay(1400);
 
-// turn
+// turn for 1.3 seconds
    motorSet(6,-127);
    motorSet(7,-127);
    motorSet(2,-127);
@@ -89,16 +115,17 @@ void autonomous() {
     motorSet(3,-127);
     delay(1500);
 
-// drive motors stop
+// drive motors, stop
     motorSet(6,0);
     motorSet(7,0);
     motorSet(2,0);
     motorSet(3,0);
-    delay(2000);
+    delay(1000);
 
-// lift motor out for 4 sec
+// lift motor out for 1.6 sec
+
     motorSet(4,127);
-    delay(4000);
+    delay(1000);
 
 // go back ward for 1.5 sec
     motorSet(6,-127);
@@ -106,116 +133,10 @@ void autonomous() {
     motorSet(2,127);
     motorSet(3,127);
     delay(1500);
-
-
-/*
-   motorSet(5, 120);  // bottom right arm is 120
-   motorSet(9, 120);  // upper right arm is 120
-   motorSet(10,120); // bottom left arm is -120
-   motorSet(8, -120);  // upper left arm is -120
-   delay(1000);
-
-   // open claw
-   motorSet(1,120);
-   delay(1000);
-
-   motorSet(5,-110);
-   motorSet(9,-110);
-   motorSet(10,-110);
-   motorSet(8,110);
-   delay(300);
-
- // continue with 20 for gravity for 9 sec
-   motorSet(5,-10);
-   motorSet(9,-10);
-   motorSet(10,10);
-   motorSet(8,10);
-   delay(3000);
-
-
-
-   // drive
-   motorSet(6,127);
-   motorSet(7,127);
-   motorSet(2,-127);
-   motorSet(3,-127);
-   delay(3000);
-
-
-   // mobile goal down
-   motorSet(4,-127);
-   delay(1000);
-
-
-// drive to first cone for 1.5 sec with half power
-  motorSet(6,60);
-  motorSet(7,60);
-  motorSet(2,60);
-  motorSet(3,60);
-  delay(1500);
-// stop
-  motorSet(6,0);
-  motorSet(7,0);
-  motorSet(2,0);
-  motorSet(3,0);
-
-
-  // pick up the mobile goal
-  motorSet(4, 100);
-  delay(1000);
-  motorSet(4, -100);
-  delay(1000);
-
-  // Lower the arm for 2 sec
-  motorSet(5,-120);
-  motorSet(9,-120);
-  motorSet(10,120);
-  motorSet(8,120);
-  delay(2000);
-
-
-  //raise arm for 8 sec
-  motorSet(5,-20);
-  motorSet(9,-20);
-  motorSet(10,20);
-  motorSet(8,20);
-  delay(8000);
-
-
-// drive back for 3.5 sec
-motorSet(6,-127);
-motorSet(7,-127);
-motorSet(2,-127);
-motorSet(3,-127);
-delay(3500);
-
-
-// put the mobile goal down
-motorSet(4,127);
-
-// go back a little
-motorSet(6,120);
-motorSet(7,120);
-motorSet(2,120);
-motorSet(3,120);
-delay(500);
-
-//----------------------------------------
+*/
+//EXPLANATIONS ----------------------------------------
 // each piece of mat is 24 inches.
 // aproxiamte 2.7 mat to get to the parking/mobile goal
 // going at full speed, 1000 per 20 inches
-
-
-
-
-
 // at speed 80, 15 degrees 100ms
-
-
-
-
-
-*/
-
-  //
 }
