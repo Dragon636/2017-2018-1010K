@@ -26,26 +26,43 @@
  * The autonomous task may exit, unlike operatorControl() which should never exit. If it does
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
-void autonomous() {
+ #define POTENTIOMETER_PORT 1
+
+ void autonomous() {
   // need to further change test all the arm fuctions
 
     // keep the claw closed tight
-    motorSet(1,-120);
-    delay(6000);
-    
-    // arm up for 1 sec
-    motorSet(5,-120);
-    motorSet(9,-120);
-    motorSet(10,-120);
-    motorSet(8,120);
-    delay(1000);
+    // while the potentiometer less than 10, the claw need to be close
+    while(analogRead(POTENTIOMETER_PORT) <10)
+    {
+    motorSet(1,-127);
+    }
 
-  // hold, continue with 20 for gravity for 0.3 sec
-    motorSet(5,20);
-    motorSet(9,20);
-    motorSet(10,20);
-    motorSet(8,-20);
+    // stop the claw
+    motorSet(1,0);
+    delay(4500);
+
+    // arm up for 1 sec
+    motorSet(5,-100);
+    motorSet(9,-100);
+    motorSet(10,-100);
+    motorSet(8,100);
+    delay(880);
+
+// pause a bit
+    motorSet(5,50);
+    motorSet(9,50);
+    motorSet(10,50);
+    motorSet(8,-50);
     delay(300);
+
+// stop the arm
+motorSet(5,0);
+motorSet(9,0);
+motorSet(10,0);
+motorSet(8,0);
+delay(4400);
+
 
   /*
   // lift down
@@ -79,11 +96,18 @@ void autonomous() {
      */
 
      // *arm down
-     motorSet(5,120);
-    motorSet(9,120);
-    motorSet(10,120);
-    motorSet(8,-120);
+     motorSet(5,70);
+    motorSet(9,70);
+    motorSet(10,70);
+    motorSet(8,-70);
     delay(500);
+
+    // arm stop
+    motorSet(5,0);
+   motorSet(9,0);
+   motorSet(10,0);
+   motorSet(8,0);
+   delay(1600);
 
     // *claw open
     motorSet(1,120);
@@ -94,7 +118,7 @@ void autonomous() {
     motorSet(9,-120);
     motorSet(10,-120);
     motorSet(8,120);
-    delay(1100);
+    delay(800);
 
   /*
   // going back

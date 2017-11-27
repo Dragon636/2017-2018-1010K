@@ -62,7 +62,7 @@ void operatorControl() {
 			 	if (joystickGetDigital(2, 8, JOY_UP)){
 			 		motorSet(5, -120);  // bottom right arm is -120
 			 		motorSet(9, -120);  // upper right arm is -120
-			 		motorSet(10, -120); // bottom left arm is 120
+			 		motorSet(10,-120); // bottom left arm is 120
 			 		motorSet(8, 120);  // upper left arm is 120
 			 	}
 
