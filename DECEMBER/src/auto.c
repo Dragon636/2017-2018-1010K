@@ -38,33 +38,30 @@
     motorSet(1,-127);
     }
 
-    // stop the claw
-    motorSet(1,0);
-    delay(4500);
 
     // arm up for 1 sec
-    motorSet(5,-100);
-    motorSet(9,-100);
-    motorSet(10,-100);
-    motorSet(8,100);
-    delay(880);
+    motorSet(5,-80);
+    motorSet(9,-80);
+    motorSet(10,-80);
+    motorSet(8,80);
+    delay(680);
 
 // pause a bit
-    motorSet(5,50);
-    motorSet(9,50);
-    motorSet(10,50);
-    motorSet(8,-50);
-    delay(300);
+    motorSet(5,20);
+    motorSet(9,20);
+    motorSet(10,20);
+    motorSet(8,-20);
+    delay(250);
 
 // stop the arm
 motorSet(5,0);
 motorSet(9,0);
 motorSet(10,0);
 motorSet(8,0);
-delay(4400);
+    delay(700);
 
 
-  /*
+
   // lift down
     motorSet(4,127);
     delay(400);
@@ -84,83 +81,103 @@ delay(4400);
     motorSet(7,0);
     motorSet(2,0);
     motorSet(3,0);
-    delay(2000);
+    delay(1800);
 
      // lift back
      motorSet(4,-127);
-     delay(600);
+     delay(250);
 
      // stop lift
      motorSet(4,0);
 
-     */
+     //arm down
+     motorSet(5,55);
+    motorSet(9,55);
+    motorSet(10,55);
+    motorSet(8,-55);
+    delay(680);
 
-     // *arm down
-     motorSet(5,70);
-    motorSet(9,70);
-    motorSet(10,70);
-    motorSet(8,-70);
-    delay(500);
+    motorSet(5,-50);
+    motorSet(9,-50);
+    motorSet(10,-50);
+    motorSet(8,50);
+    delay(200);
 
     // arm stop
     motorSet(5,0);
    motorSet(9,0);
    motorSet(10,0);
    motorSet(8,0);
-   delay(1600);
+   delay(500);
 
     // *claw open
     motorSet(1,120);
-    delay(500);
+    delay(250);
 
     // *arm up
     motorSet(5,-120);
     motorSet(9,-120);
     motorSet(10,-120);
     motorSet(8,120);
-    delay(800);
+    delay(750);
+// LIFT GO BACK
+motorSet(4,-127);
+delay(150);
 
-  /*
+
   // going back
      motorSet(6,-127);
      motorSet(7,-127);
      motorSet(2,127);
      motorSet(3,127);
-     delay(1400);
+     delay(1340);
 
   // turn for 1.3 seconds
      motorSet(6,-127);
      motorSet(7,-127);
      motorSet(2,-127);
      motorSet(3,-127);
-      delay(1300);
+      delay(1250);
 
   // go forward a bit
       motorSet(6,127);
       motorSet(7,127);
       motorSet(2,-127);
       motorSet(3,-127);
-      delay(1200);
+      delay(600);
+
+// turn
+motorSet(6,127);
+motorSet(7,127);
+motorSet(2,127);
+motorSet(3,127);
+ delay(250);
+// drive
+ motorSet(6,127);
+ motorSet(7,127);
+ motorSet(2,-127);
+ motorSet(3,-127);
+ delay(600);
 
   // drive motors, stop
       motorSet(6,0);
       motorSet(7,0);
       motorSet(2,0);
       motorSet(3,0);
-      delay(1000);
 
-  // lift motor out for 1.6 sec
+
+  // lift motor out for 0.8 sec
 
       motorSet(4,127);
-      delay(1000);
+      delay(500);
 
-  // go back ward for 1.5 sec
+  // go back ward for 1.3 sec
       motorSet(6,-127);
       motorSet(7,-127);
       motorSet(2,127);
       motorSet(3,127);
-      delay(1300);
-  */
+      delay(1000);
+
   //EXPLANATIONS ----------------------------------------
   // each piece of mat is 24 inches.
   // aproxiamte 2.7 mat to get to the parking/mobile goal
