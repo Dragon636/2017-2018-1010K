@@ -33,6 +33,7 @@
 
     // keep the claw closed tight
     // while the potentiometer less than 10, the claw need to be close
+
     while(analogRead(POTENTIOMETER_PORT) <10)
     {
     motorSet(1,-127);
@@ -40,25 +41,25 @@
 
 
     // arm up for 1 sec
-    motorSet(5,-80);
-    motorSet(9,-80);
-    motorSet(10,-80);
-    motorSet(8,80);
-    delay(680);
+    motorSet(5,-100);
+    motorSet(9,-100);
+    motorSet(10,-100);
+    motorSet(8,100);
+    delay(700);
 
 // pause a bit
     motorSet(5,20);
     motorSet(9,20);
     motorSet(10,20);
     motorSet(8,-20);
-    delay(250);
+    delay(50);
 
 // stop the arm
 motorSet(5,0);
 motorSet(9,0);
 motorSet(10,0);
 motorSet(8,0);
-    delay(700);
+delay(800);
 
 
 
@@ -68,7 +69,12 @@ motorSet(8,0);
     // stop
     motorSet(4,0);
 
+// lift up
+motorSet(4, 127);
+delay(120);
 
+motorSet(4,0);
+//-------------------------
     // drive to first cone for 3 sec with full power
     motorSet(6,127);
     motorSet(7,127);
@@ -120,44 +126,48 @@ motorSet(8,0);
     motorSet(10,-120);
     motorSet(8,120);
     delay(750);
-// LIFT GO BACK
-motorSet(4,-127);
-delay(150);
 
-
+//--------------------------------------------finish the liftsss
   // going back
      motorSet(6,-127);
      motorSet(7,-127);
      motorSet(2,127);
      motorSet(3,127);
-     delay(1340);
+     delay(1640);
 
-  // turn for 1.3 seconds
+  // turn for .85 seconds
      motorSet(6,-127);
      motorSet(7,-127);
      motorSet(2,-127);
      motorSet(3,-127);
-      delay(1250);
+      delay(850);
 
   // go forward a bit
       motorSet(6,127);
       motorSet(7,127);
       motorSet(2,-127);
       motorSet(3,-127);
-      delay(600);
+      delay(300);
+// stop
+      motorSet(6,0);
+      motorSet(7,0);
+      motorSet(2,0);
+      motorSet(3,0);
+      delay(400);
+
 
 // turn
-motorSet(6,127);
-motorSet(7,127);
-motorSet(2,127);
-motorSet(3,127);
- delay(250);
+motorSet(6,-127);
+motorSet(7,-127);
+motorSet(2,-127);
+motorSet(3,-127);
+ delay(950);
 // drive
  motorSet(6,127);
  motorSet(7,127);
  motorSet(2,-127);
  motorSet(3,-127);
- delay(600);
+ delay(1300);
 
   // drive motors, stop
       motorSet(6,0);
