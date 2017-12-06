@@ -171,7 +171,7 @@
       motorSet(4,127);
       delay(500);
 
-  // go back ward for 1 sec
+  // go backward for 1 sec
       motorSet(6,-127);
       motorSet(7,-127);
       motorSet(2,127);
