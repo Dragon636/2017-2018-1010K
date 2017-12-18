@@ -4,9 +4,9 @@ Main Part                 | Sub-Part             | Serial Number        | Commen
 ------------------------- | -------------------- | -------------------- | --------------------
 **7.2 V Batteries**       |                      | 6115AT 7185AT        | 4 batteries  
 **7.2 V Battery Charger** |                      | 201507 201705        |
-**AAA Batteries**         |         MAIN         |6453AT 10A11 4415AT   |4 4415AT
-**AAA Battery Charger**   |                      |                      |
-**_Cortex_**              |                      |                       |  
+**AAA Batteries**         | MAIN                 |6453AT 10A11 4415AT  |4 4415AT
+**AAA Battery Charger**   |                      |  5213AB              |
+**_Cortex_**              |                      |                      |  
 **_Joysticks_**           | Main                 |    5362AA            |  
 **_Joysticks_**           | Partner              |    4482AA            |  
 **_Motors_**              | Motor 1              |   1710011            |   
