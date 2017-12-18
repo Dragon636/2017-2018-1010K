@@ -1,16 +1,4 @@
 # 2017-2018-1010K
 Repository for Team 1010K
-
-WIRING DIAGRAM
-
-1	CLAW
-2	RB
-3	RF
-4	LIFT
-5	BottomRA
-6	LB
-7	LF
-8	LTA
-9	topRA
-10	BLA
+The wiring and backwards plan is in INFO
 
